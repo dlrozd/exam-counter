@@ -1,4 +1,4 @@
-import type {ButtonsProps} from "./Buttons.tsx";
+import { type ButtonsProps} from "./Buttons.tsx";
 
 type CounterProps = {
     count: ButtonsProps['count']
@@ -12,7 +12,6 @@ export const Counter = (props: CounterProps) => {
 
         <div className={'counter-container'}>
             <div className={counterClassName}>
-                {'Count: '}
                 {props.count}
             </div>
         </div>

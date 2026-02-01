@@ -18,8 +18,8 @@ export const SetValues = () => {
                     <input className={'start-input'} type={'number'} value={5}/>
                 </div>
             </div>
-            <div className={'set-button'}>
-                <button>Set</button>
+            <div className={'set-button-container'}>
+                <button className={'style-button'}>set</button>
             </div>
         </div>
     )

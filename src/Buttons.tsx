@@ -12,8 +12,8 @@ export const Buttons = ({count, increment, reset}: ButtonsProps) => {
 
     return (
         <div className={'buttons-container'}>
-            <button disabled={incrementDisable} onClick={increment}>+</button>
-            <button disabled={resetDisable} onClick={reset}>Reset</button>
+            <button className={'style-button'} disabled={incrementDisable} onClick={increment}>inc</button>
+            <button className={'style-button'} disabled={resetDisable} onClick={reset}>reset</button>
         </div>
     )
 
