@@ -2,7 +2,7 @@ import './App.css'
 import {Counter} from "./Counter.tsx";
 import {useState} from "react";
 import {SetValues} from "./SetValues.tsx";
-import {Buttons} from "./Buttons.tsx";
+import {Button} from "./Buttons.tsx";
 
 function App() {
 
@@ -14,9 +14,10 @@ function App() {
     return (
         <div className={'app-container'}>
             <SetValues/>
+
             <div className={'container-counter'}>
                 <Counter count={count}/>
-                <Buttons count={count} increment={increment} reset={reset}/>
+                <Button count={count} increment={increment} reset={reset}/>
             </div>
         </div>
     )
