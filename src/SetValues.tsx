@@ -1,29 +1,48 @@
+import {Input} from './Input';
+import {Button} from './Button';
 
-// export type SetValuesProps = {
-//     max: number,
-//     start: number
-// }
+type ValuesType = {
+    startValue: number;
+    maxValue: number;
+}
 
-export const SetValues = () => {
+type SetValuesPropsType = {
+    values: ValuesType;
+    onChange: (field: 'startValue' | 'maxValue', value: number) => void;
+    onSet: () => void;
+    isSetDisabled: boolean;
+    isError: boolean;
+}
 
+export const SetValues = ({values, onChange, onSet, isSetDisabled, isError}: SetValuesPropsType) => {
 
+    const inputClass = isError ? 'input-error' : '';
 
     return (
-
-        <div className={'counter-set'}>
-            <div className={'set-values'}>
-                <div className={'set-max-value'}>
-                    max value:
-                    <input className={'max-input'} type={'number'} value={5}/>
+        <div className="counter-set">
+            <div className="set-values">
+                <div>
+                    <span>max value:</span>
+                    <Input
+                        value={values.maxValue}
+                        onChange={(v) => onChange('maxValue', v)}
+                        className={inputClass}
+                    />
                 </div>
-                <div className={'set-start-value'}>
-                    start value:
-                    <input className={'start-input'} type={'number'} value={5}/>
+                <div>
+                    <span>start value:</span>
+                    <Input
+                        value={values.startValue}
+                        onChange={(v) => onChange('startValue', v)}
+                        className={inputClass}/>
                 </div>
             </div>
-            <div className={'set-button-container'}>
-                <button className={'style-button'}>set</button>
-            </div>
+            <div className="set-button-container">
+                <Button
+                    title="set"
+                    onClick={onSet}
+                    disabled={isSetDisabled || isError}
+                /></div>
         </div>
-    )
-}
+    );
+};
