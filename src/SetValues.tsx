@@ -1,6 +1,7 @@
-import {Button, ConfigProvider, Input} from 'antd';
+import {Button, ConfigProvider} from 'antd';
 import {createStyles} from 'antd-style';
-import { NumberOutlined  } from '@ant-design/icons';
+import type {InputNumberProps} from 'antd';
+import {Flex, InputNumber} from 'antd';
 
 
 type ValuesType = {
@@ -15,6 +16,19 @@ type SetValuesPropsType = {
     isSetDisabled: boolean;
     isError: boolean;
 }
+
+const handleSpinnerChange: InputNumberProps['onChange'] = (value) => {
+    console.log('changed', value);
+};
+
+const sharedProps: InputNumberProps = {
+    mode: 'spinner' as const,
+    min: 1,
+    max: 10,
+    defaultValue: 3,
+    onChange: handleSpinnerChange,
+    style: {width: 150},
+};
 
 export const SetValues = ({values, onChange, onSet, isSetDisabled, isError}: SetValuesPropsType) => {
 
@@ -55,29 +69,30 @@ export const SetValues = ({values, onChange, onSet, isSetDisabled, isError}: Set
                 <div className="set-values">
                     <div>
                         <span>max value:</span>
-                        <Input
-                            size="large"
-                            placeholder="large size"
-                            prefix={<NumberOutlined />}
-                            value={values.maxValue}
-                            onChange={(e) => onChange('maxValue',  Number(e.target.value))}
-                            className={inputClass}
-                        />
+                        <Flex vertical gap="middle">
+                            <InputNumber
+                                {...sharedProps}
+                                placeholder="Outlined"
+                                size="large"
+                                value={values.maxValue}
+                                onChange={(value) => onChange('maxValue', Number(value || 0))}
+                                className={inputClass}/>
+                        </Flex>
                     </div>
                     <div>
                         <span>start value:</span>
-                        <Input
-                            size="large"
-                            placeholder="large size"
-                            prefix={<NumberOutlined />}
-                            value={values.startValue}
-                            onChange={(e) => onChange('startValue', Number(e.target.value))}
-                            className={inputClass}
-                        />
+                        <Flex vertical gap="middle">
+                            <InputNumber
+                                {...sharedProps}
+                                placeholder="Outlined"
+                                size="large"
+                                value={values.startValue}
+                                onChange={(value) => onChange('startValue', Number(value || 0))}
+                                className={inputClass}/>
+                        </Flex>
                     </div>
                 </div>
                 <div className="set-button-container">
-                    {/* 4. Раскомментируйте и используйте Button из antd */}
                     <Button
                         size="large"
                         type="primary"
